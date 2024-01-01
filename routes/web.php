@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // store - Store new listing
 // edit - Show form to edit listing
 // update - Update listing
-// destroy - Delete listing  
+// destroy - Delete listing
 
 
 // ALL Listing
@@ -32,6 +32,20 @@ Route::get('/', [ListingController::class, 'index']);
 
 
 // Single Listing
+
+
+// show create form
+
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+
+
+
+// Store Listing
+Route::post('/listings', [ListingController::class , 'store']);
+
+
+
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class , 'show']);
