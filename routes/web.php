@@ -29,10 +29,9 @@ Route::get('/', function () {
 
 // Single Listing
 
+// Single Listing
 Route::get('/listings/{listing}', function (Listing $listing) {
-    $listing = Listing::find($listing);
     return view('listing', [
         'listing' => $listing
     ]);
-
 });
