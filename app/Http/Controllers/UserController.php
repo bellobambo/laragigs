@@ -53,12 +53,33 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
 
-        return redirect('/')->with('message' , 'you have been logged gout! ');
+        return redirect('/')->with('message', 'you have been logged gout! ');
     }
 
 
-    public function login(){
+    public function login()
+    {
         return view('users.login');
     }
+
+    // Authenticate User
+
+    public function authenticate(Request $request)
+    {
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+
+        if(auth()->attempt($formFields)){
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message' , 'You are now logged in');
+        }
+
+        return back()->withErrors(['email' => 'invalid Credentials'])->onlyInput('email');
+
+    }
+
 
 }
